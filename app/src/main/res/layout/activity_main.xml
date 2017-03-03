@@ -23,6 +23,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="10" />
+
+        <Button
+            android:id="@+id/logOutBMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Log Out" />
+
+        <Button
+            android:id="@+id/unlinkButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="UnLink" />
+
+        <Button
+            android:id="@+id/linkButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Link" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
