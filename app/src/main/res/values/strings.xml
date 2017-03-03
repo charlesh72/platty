@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Egolist</string>
+    <string name="app_name">tests</string>
+    <string name="facebook_app_id">159799987869005</string>
+    <string name="log_in_sign_up">Log In/Sign Up</string>
 </resources>
