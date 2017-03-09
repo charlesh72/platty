@@ -41,6 +41,31 @@ public class MainActivity extends Activity {
             }
         });
 
+        Button unLinkB = (Button) findViewById(R.id.unlinkButton);
+        unLinkB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                unlink();
+            }
+        });
+
+        Button linkB = (Button) findViewById(R.id.linkButton);
+        linkB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                link();
+            }
+        });
+
+        Button mapB = (Button) findViewById(R.id.mapButton);
+        mapB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                startActivity(intent);
+            }
+        });
+
         final LoginButton fbButton = (LoginButton) findViewById(R.id.facebook_login);
         fbButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,22 +83,6 @@ public class MainActivity extends Activity {
                         }
                     }
                 });
-            }
-        });
-
-        Button unLinkB = (Button) findViewById(R.id.unlinkButton);
-        unLinkB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                unlink();
-            }
-        });
-
-        Button linkB = (Button) findViewById(R.id.linkButton);
-        linkB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                link();
             }
         });
     }

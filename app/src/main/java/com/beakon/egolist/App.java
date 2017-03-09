@@ -26,7 +26,8 @@ public class App extends Application {
                 .applicationId("myAppId")
                 .clientKey("myMasterKey")
                 .addNetworkInterceptor(new ParseLogInterceptor())
-                .server("https://hidden-stream-90917.herokuapp.com/parse/").build());
+                .server("https://hidden-stream-90917.herokuapp.com/parse/")
+                .build());
 
         ParseFacebookUtils.initialize(this);
 
