@@ -6,13 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.facebook.login.widget.LoginButton;
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.ui.PlacePicker;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
@@ -62,11 +57,11 @@ public class MainActivity extends Activity {
             }
         });
 
-        Button mapB = (Button) findViewById(R.id.mapButton);
-        mapB.setOnClickListener(new View.OnClickListener() {
+        Button createEventB = (Button) findViewById(R.id.mainBCreateEvent);
+        createEventB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                Intent intent = new Intent(MainActivity.this, CreateEventActivity.class);
                 startActivity(intent);
             }
         });
