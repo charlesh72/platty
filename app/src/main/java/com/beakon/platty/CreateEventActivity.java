@@ -1,10 +1,9 @@
-package com.beakon.egolist;
+package com.beakon.platty;
 
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.AlarmClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;

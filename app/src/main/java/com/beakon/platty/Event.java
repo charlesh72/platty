@@ -1,10 +1,8 @@
-package com.beakon.egolist;
+package com.beakon.platty;
 
 import android.icu.util.Calendar;
 
 import com.google.android.gms.maps.model.LatLng;
-
-import java.util.Date;
 
 /**
  * Created by Beakon on 3/10/2017.

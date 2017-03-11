@@ -1,4 +1,4 @@
-package com.beakon.egolist;
+package com.beakon.platty;
 
 import org.junit.Test;
 

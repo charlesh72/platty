@@ -1,4 +1,4 @@
-package com.beakon.egolist;
+package com.beakon.platty;
 
 import android.app.Activity;
 import android.content.Intent;

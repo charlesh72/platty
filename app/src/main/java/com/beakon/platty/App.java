@@ -1,4 +1,4 @@
-package com.beakon.egolist;
+package com.beakon.platty;
 
 import android.app.Application;
 import android.util.Log;
@@ -6,7 +6,6 @@ import android.util.Log;
 import com.facebook.FacebookSdk;
 import com.parse.Parse;
 import com.parse.ParseFacebookUtils;
-import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.interceptors.ParseLogInterceptor;
 

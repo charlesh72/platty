@@ -1,9 +1,8 @@
-package com.beakon.egolist;
+package com.beakon.platty;
 
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
-import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.widget.TimePicker;

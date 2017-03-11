@@ -1,4 +1,4 @@
-package com.beakon.egolist;
+package com.beakon.platty;
 
 /**
  * Created by Beakon on 3/10/2017.
