@@ -26,6 +26,15 @@
             android:onClick="showDatePickerDialog"
             android:text="Pick Date" />
 
+        <TextView
+            android:id="@+id/createEventTVDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="1-1-11"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
         <Button
             android:id="@+id/createEventBShowTimePicker"
             android:layout_width="match_parent"

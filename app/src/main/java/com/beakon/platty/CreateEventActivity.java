@@ -20,7 +20,7 @@ import org.greenrobot.eventbus.Subscribe;
 public class CreateEventActivity extends Activity {
 
     private Event mEvent;
-    private TextView mEventTime;
+    private TextView mEventTime, mEventDate;
     private final int PLACE_PICKER_REQUEST = 1;
 
     @Override
@@ -29,7 +29,12 @@ public class CreateEventActivity extends Activity {
         setContentView(R.layout.activity_create_event);
 
         mEvent = new Event();
+
         mEventTime = (TextView) findViewById(R.id.createEventTVTime);
+        mEventTime.setText(mEvent.getHour() + ":" + mEvent.getMinute());
+
+        mEventDate = (TextView) findViewById(R.id.createEventTVDate);
+        mEventDate.setText(mEvent.getMonth() + "-" + mEvent.getDay() + "-" + mEvent.getYear());
 
         Button getPlaceB = (Button) findViewById(R.id.createEventBGetPlace);
         getPlaceB.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +83,7 @@ public class CreateEventActivity extends Activity {
 
     @Subscribe
     public void onDatePickEvent(DatePickEvent event) {
+        mEventDate.setText((event.month + 1) + "-" + event.day + "-" + event.year);
         mEvent.setYear(event.year);
         mEvent.setMonth(event.month);
         mEvent.setDay(event.day);

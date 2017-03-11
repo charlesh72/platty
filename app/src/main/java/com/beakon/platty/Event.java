@@ -23,7 +23,7 @@ public class Event {
         c.get(Calendar.AM_PM);
 
         year = c.get(Calendar.YEAR);
-        month = c.get(Calendar.MONTH);
+        month = c.get(Calendar.MONTH) + 1;
         day = c.get(Calendar.DAY_OF_MONTH);
 
         mEventName = "defaultEventName";
@@ -84,7 +84,7 @@ public class Event {
     }
 
     public void setMonth(int month) {
-        this.month = month;
+        this.month = month + 1;
     }
 
     public int getDay() {

@@ -75,11 +75,11 @@ public class MainActivity extends Activity {
                     @Override
                     public void done(ParseUser user, ParseException ex) {
                         if (user == null) {
-                            Log.d("MyApp", "Uh oh. The user cancelled the Facebook login.");
+                            Log.d("Platty", "Uh oh. The user cancelled the Facebook login.");
                         } else if (user.isNew()) {
-                            Log.d("MyApp", "User signed up and logged in through Facebook!");
+                            Log.d("Platty", "User signed up and logged in through Facebook!");
                         } else {
-                            Log.d("MyApp", "User logged in through Facebook!");
+                            Log.d("Platty", "User logged in through Facebook!");
                         }
                     }
                 });
@@ -100,7 +100,7 @@ public class MainActivity extends Activity {
                     user, MainActivity.this, permissions, new SaveCallback() {
                         @Override
                         public void done(ParseException e) {
-                            Log.d("EgoList", "Woohoo, user logged in with Facebook!");
+                            Log.d("Platty", "Woohoo, user logged in with Facebook!");
                         }
                     });
         }
@@ -112,7 +112,7 @@ public class MainActivity extends Activity {
             @Override
             public void done(ParseException e) {
                 if (e == null) {
-                    Log.d("EgoList", "The user is no longer associated with their Facebook account.");
+                    Log.d("Platty", "The user is no longer associated with their Facebook account.");
                 }
             }
         });
