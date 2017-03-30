@@ -1,10 +1,10 @@
 package com.beakon.platty;
 
+import android.app.Activity;
 import android.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class ContactsActivity extends AppCompatActivity {
+public class ContactsActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -9,6 +9,7 @@ import android.content.CursorLoader;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,8 +26,11 @@ import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
-
+import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.provider.ContactsContract.Data;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,7 +50,8 @@ public class ContactsFragment extends Fragment implements
             Build.VERSION.SDK_INT
                     >= Build.VERSION_CODES.HONEYCOMB ?
                     ContactsContract.Contacts.DISPLAY_NAME_PRIMARY :
-                    ContactsContract.Contacts.DISPLAY_NAME
+                    ContactsContract.Contacts.DISPLAY_NAME,
+            ContactsContract.Contacts.HAS_PHONE_NUMBER
     };
     /*
      * Defines an array that contains resource ids for the layout views
@@ -54,7 +59,8 @@ public class ContactsFragment extends Fragment implements
      * the Android framework, so it is prefaced with "android.R.id"
      */
     private final static int[] TO_IDS = {
-            android.R.id.text1
+            android.R.id.text1,
+            android.R.id.text2
     };
     // Define global mutable variables
     // Define a ListView object
@@ -71,13 +77,15 @@ public class ContactsFragment extends Fragment implements
     @SuppressLint("InlinedApi")
     private static final String[] PROJECTION =
             {
-                    ContactsContract.Contacts._ID,
+                    Data._ID,
                     ContactsContract.Contacts.LOOKUP_KEY,
+
                     Build.VERSION.SDK_INT
                             >= Build.VERSION_CODES.HONEYCOMB ?
-                            ContactsContract.Contacts.DISPLAY_NAME_PRIMARY :
-                            ContactsContract.Contacts.DISPLAY_NAME
+                    Contacts.DISPLAY_NAME_PRIMARY :
+                    Contacts.DISPLAY_NAME,
 
+                    Contacts.HAS_PHONE_NUMBER
             };
 
     // The column index for the _ID column
@@ -85,15 +93,27 @@ public class ContactsFragment extends Fragment implements
 
     // The column index for the LOOKUP_KEY column
     private static final int LOOKUP_KEY_INDEX = 1;
+
+    // The column index for the DISPLAY_NAME column
+    private static final int DISPLAY_NAME_INDEX = 2;
+
     // Defines the text expression
     @SuppressLint("InlinedApi")
     private static final String SELECTION =
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB ?
-                    ContactsContract.Contacts.DISPLAY_NAME_PRIMARY + " LIKE ?" :
-                    ContactsContract.Contacts.DISPLAY_NAME + " LIKE ?";
+            (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB ?
+            Contacts.DISPLAY_NAME_PRIMARY + " LIKE ?" :
+            Contacts.DISPLAY_NAME + " LIKE ?")
+
+            /*
+             * Searches for a MIME type that matches
+             * the value of the constant
+             * Email.CONTENT_ITEM_TYPE. Note the
+             * single quotes surrounding Email.CONTENT_ITEM_TYPE.
+             */
+            + " AND " + Contacts.Data.MIMETYPE + " = '" + Email.CONTENT_ITEM_TYPE + "'";
 
     // Defines a variable for the search string
-    private String mSearchString = "c";
+    private String mSearchString = "";
     // Defines the array to hold values that replace the ?
     private String[] mSelectionArgs = { mSearchString };
 
@@ -118,7 +138,7 @@ public class ContactsFragment extends Fragment implements
         super.onActivityCreated(savedInstanceState);
         getPermissions();
         // Gets the ListView from the View list of the parent activity
-        mContactsList = (ListView) getActivity().findViewById(R.id.list);
+        mContactsList = (ListView) getActivity().findViewById(android.R.id.list);
         // Gets a CursorAdapter
         mCursorAdapter = new SimpleCursorAdapter(
                 getActivity(),
@@ -126,6 +146,7 @@ public class ContactsFragment extends Fragment implements
                 null,
                 FROM_COLUMNS, TO_IDS,
                 0);
+
         // Sets the adapter for the ListView
         mContactsList.setAdapter(mCursorAdapter);
 
@@ -244,16 +265,16 @@ public class ContactsFragment extends Fragment implements
          * format.
          */
         Uri contentUri = Uri.withAppendedPath(
-                ContactsContract.Contacts.CONTENT_FILTER_URI,
+                Contacts.CONTENT_FILTER_URI,
                 Uri.encode(mSearchString));
         // Starts the query
         return new CursorLoader(
                 getActivity(),
-                contentUri,
+                Contacts.CONTENT_URI,
                 PROJECTION,
-                null, //SELECTION,
-                null, //mSelectionArgs,
-                null
+                SELECTION,
+                mSelectionArgs,
+                "display_name asc"
         );
     }
 
@@ -329,19 +350,20 @@ public class ContactsFragment extends Fragment implements
      */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            // Get the Cursor
-            Cursor cursor = ((SimpleCursorAdapter) parent.getAdapter()).getCursor();
-            // Move to the selected contact
-            cursor.moveToPosition(position);
-            // Get the _ID value
-            mContactId = cursor.getLong(CONTACT_ID_INDEX);
-            // Get the selected LOOKUP KEY
-            mContactKey = cursor.getString(LOOKUP_KEY_INDEX);
-            String name = cursor.getString(2);
-            // Get the selected Display Name
-            Toast.makeText(getContext().getApplicationContext(), "onItemClick: mContactId = " + name, Toast.LENGTH_SHORT).show();
-            // Create the contact's content Uri
-            mContactUri = ContactsContract.Contacts.getLookupUri(mContactId, mContactKey);
+        // Get the Cursor
+        Cursor cursor = ((SimpleCursorAdapter) parent.getAdapter()).getCursor();
+        // Move to the selected contact
+        cursor.moveToPosition(position);
+        // Get the _ID value
+        mContactId = cursor.getLong(CONTACT_ID_INDEX);
+        // Get the selected LOOKUP KEY
+        mContactKey = cursor.getString(LOOKUP_KEY_INDEX);
+        // Get the selected DISPLAY NAME
+        String name = cursor.getString(DISPLAY_NAME_INDEX);
+
+        Toast.makeText(getContext().getApplicationContext(), "onItemClick: Display Name = " + name, Toast.LENGTH_SHORT).show();
+        // Create the contact's content Uri
+        mContactUri = Contacts.getLookupUri(mContactId, mContactKey);
         /*
          * You can use mContactUri as the content URI for retrieving
          * the details for a contact.

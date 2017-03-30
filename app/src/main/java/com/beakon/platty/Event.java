@@ -3,6 +3,7 @@ package com.beakon.platty;
 import android.icu.util.Calendar;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.parse.ParseUser;
 
 /**
  * Created by Beakon on 3/10/2017.
@@ -12,9 +13,11 @@ public class Event {
 
     private int hour, minute, year, month, day;
     private LatLng mLatLng;
-    private String mEventName, mPlaceName;
+    private String mEventName, mPlaceName, mHostId;
 
     public Event() {
+        mHostId = ParseUser.getCurrentUser().getObjectId();
+
         // Use the current time as default
         final Calendar c = Calendar.getInstance();
 
@@ -29,6 +32,14 @@ public class Event {
         mEventName = "defaultEventName";
         mPlaceName = "defaultPlaceName";
         mLatLng = new LatLng(-33.8523341, 151.2106085);
+    }
+
+    public String getHostId() {
+        return mHostId;
+    }
+
+    public void setHostId(String hostId) {
+        mHostId = hostId;
     }
 
     public int getHour() {
