@@ -1,6 +1,7 @@
 package com.beakon.platty;
 
 import android.app.Activity;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -54,6 +55,16 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 link();
+            }
+        });
+
+        Button contactsB = (Button) findViewById(R.id.mainBContacts);
+        contactsB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ContactsActivity.class);
+                startActivity(intent);
+
             }
         });
 
