@@ -104,13 +104,9 @@ public class ContactsFragment extends Fragment implements
             Contacts.DISPLAY_NAME_PRIMARY + " LIKE ?" :
             Contacts.DISPLAY_NAME + " LIKE ?")
 
-            /*
-             * Searches for a MIME type that matches
-             * the value of the constant
-             * Email.CONTENT_ITEM_TYPE. Note the
-             * single quotes surrounding Email.CONTENT_ITEM_TYPE.
-             */
-            + " AND " + Contacts.Data.MIMETYPE + " = '" + Email.CONTENT_ITEM_TYPE + "'";
+            //Filters out contacts WITHOUT a phone number saved.
+            + " AND " + Contacts.HAS_PHONE_NUMBER + " = '" + 1 + "'";
+
 
     // Defines a variable for the search string
     private String mSearchString = "";

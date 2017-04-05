@@ -5,6 +5,8 @@ import android.icu.util.Calendar;
 import com.google.android.gms.maps.model.LatLng;
 import com.parse.ParseUser;
 
+import java.util.List;
+
 /**
  * Created by Beakon on 3/10/2017.
  */
@@ -14,6 +16,8 @@ public class Event {
     private int hour, minute, year, month, day;
     private LatLng mLatLng;
     private String mEventName, mPlaceName, mHostId;
+    // TODO: 4/5/2017 Set up invited guests and add inviting through contacts
+    private List<String> mInvitedGuests;
 
     public Event() {
         mHostId = ParseUser.getCurrentUser().getObjectId();

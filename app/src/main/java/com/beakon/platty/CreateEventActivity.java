@@ -36,6 +36,16 @@ public class CreateEventActivity extends Activity {
         mEventDate = (TextView) findViewById(R.id.createEventTVDate);
         mEventDate.setText(mEvent.getMonth() + "-" + mEvent.getDay() + "-" + mEvent.getYear());
 
+        Button contactsB = (Button) findViewById(R.id.createEventBContacts);
+        contactsB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CreateEventActivity.this, ContactsActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
         Button getPlaceB = (Button) findViewById(R.id.createEventBGetPlace);
         getPlaceB.setOnClickListener(new View.OnClickListener() {
             @Override

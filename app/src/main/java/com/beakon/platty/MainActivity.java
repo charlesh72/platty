@@ -58,16 +58,6 @@ public class MainActivity extends Activity {
             }
         });
 
-        Button contactsB = (Button) findViewById(R.id.mainBContacts);
-        contactsB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ContactsActivity.class);
-                startActivity(intent);
-
-            }
-        });
-
         Button createEventB = (Button) findViewById(R.id.mainBCreateEvent);
         createEventB.setOnClickListener(new View.OnClickListener() {
             @Override
