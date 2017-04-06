@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.beakon.platty.CreateEventActivity"
-    tools:layout_editor_absoluteY="81dp"
-    tools:layout_editor_absoluteX="0dp">
-
-    <LinearLayout
-        android:layout_width="368dp"
-        android:layout_height="495dp"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="0dp">
+    android:orientation="vertical"
+    tools:context="com.beakon.platty.CreateEventActivity">
 
         <EditText
             android:id="@+id/createEventETName"
@@ -76,6 +68,7 @@
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:checkedButton="@+id/createEventRBPrivate"
             android:orientation="horizontal">
 
             <RadioButton
@@ -83,15 +76,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Public Event" />
+                android:text="Public Event"
+                android:onClick="onRadioButtonClicked" />
 
             <RadioButton
                 android:id="@+id/createEventRBPrivate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Private Event" />
+                android:text="Private Event"
+                android:onClick="onRadioButtonClicked" />
         </RadioGroup>
 
-    </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+        <Button
+            android:id="@+id/createEventBCreate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create Event"
+            android:onClick="onCreateEventButtonClicked"/>
+</LinearLayout>

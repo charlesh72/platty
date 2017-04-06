@@ -3,6 +3,8 @@ package com.beakon.platty;
 import android.icu.util.Calendar;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.parse.ParseGeoPoint;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 import java.util.List;
@@ -16,9 +18,11 @@ public class Event {
     private int hour, minute, year, month, day;
     private LatLng mLatLng;
     private String mEventName, mPlaceName, mHostId;
+
+    private boolean mPublic;
+
     // TODO: 4/5/2017 Set up invited guests and add inviting through contacts
     private List<String> mInvitedGuests;
-
     public Event() {
         mHostId = ParseUser.getCurrentUser().getObjectId();
 
@@ -36,6 +40,21 @@ public class Event {
         mEventName = "defaultEventName";
         mPlaceName = "defaultPlaceName";
         mLatLng = new LatLng(-33.8523341, 151.2106085);
+    }
+
+    public void save() {
+        // TODO: 4/6/2017 Save all data from the event to the server
+        ParseObject event = new ParseObject("Event");
+
+        ParseGeoPoint point = new ParseGeoPoint(mLatLng.latitude, mLatLng.longitude);
+    }
+
+    public boolean isPublic() {
+        return mPublic;
+    }
+
+    public void setPublic(boolean mPublic) {
+        this.mPublic = mPublic;
     }
 
     public String getHostId() {

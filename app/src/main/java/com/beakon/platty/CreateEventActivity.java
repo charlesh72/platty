@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -135,5 +136,26 @@ public class CreateEventActivity extends Activity {
         newFragment.setArguments(args);
 
         newFragment.show(getFragmentManager(), "timePicker");
+    }
+
+    public void onRadioButtonClicked(View view) {
+        //Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch (view.getId()) {
+            case R.id.createEventRBPublic:
+                if (checked)
+                    mEvent.setPublic(true);
+                break;
+            case R.id.createEventRBPrivate:
+                if (checked)
+                    mEvent.setPublic(false);
+                break;
+        }
+    }
+
+    public void onCreateEventButtonClicked(View view) {
+        
     }
 }
