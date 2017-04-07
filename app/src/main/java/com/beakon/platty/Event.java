@@ -43,10 +43,21 @@ public class Event {
     }
 
     public void save() {
-        // TODO: 4/6/2017 Save all data from the event to the server
         ParseObject event = new ParseObject("Event");
+        event.put("hostId", mHostId);
+        event.put("eventName", mEventName);
+        event.put("placeName", mPlaceName);
 
         ParseGeoPoint point = new ParseGeoPoint(mLatLng.latitude, mLatLng.longitude);
+        event.put("geoPoint", point);
+
+        event.put("hour", hour);
+        event.put("minute", minute);
+        event.put("year", year);
+        event.put("month", month);
+        event.put("day", day);
+
+        event.saveInBackground();
     }
 
     public boolean isPublic() {
