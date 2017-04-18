@@ -156,6 +156,6 @@ public class CreateEventActivity extends Activity {
     }
 
     public void onCreateEventButtonClicked(View view) {
-        mEvent.save();
+        mEvent.saveAsNew();
     }
 }

@@ -1,10 +1,14 @@
 package com.beakon.platty;
 
 import android.icu.util.Calendar;
+import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.parse.FindCallback;
+import com.parse.ParseException;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.util.List;
@@ -17,7 +21,7 @@ public class Event {
 
     private int hour, minute, year, month, day;
     private LatLng mLatLng;
-    private String mEventName, mPlaceName, mHostId;
+    private String mEventName, mPlaceName, mHostId, mEventId;
 
     private boolean mPublic;
 
@@ -25,6 +29,8 @@ public class Event {
     private List<String> mInvitedGuests;
     public Event() {
         mHostId = ParseUser.getCurrentUser().getObjectId();
+        // TODO: 4/17/2017 change mEventId to use a real ID or remove if not necessary
+        mEventId = "placeholderid";
 
         // Use the current time as default
         final Calendar c = Calendar.getInstance();
@@ -42,9 +48,28 @@ public class Event {
         mLatLng = new LatLng(-33.8523341, 151.2106085);
     }
 
-    public void save() {
+    public Event(String eventId) {
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Event");
+        query.whereEqualTo("eventId", eventId);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                if (e == null) {
+                    Log.d("event", "Retrieved " + objects.size() + " events");
+                } else {
+                    Log.d("event", "Error: " + e.getMessage());
+                }
+            }
+        });
+    }
+
+    /**
+     * Creates a new ParseObject for this class and saves it to the server.
+     */
+    public void saveAsNew() {
         ParseObject event = new ParseObject("Event");
         event.put("hostId", mHostId);
+        event.put("eventId", mEventId);
         event.put("eventName", mEventName);
         event.put("placeName", mPlaceName);
 
