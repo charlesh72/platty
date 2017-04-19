@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.parse.FindCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
@@ -61,6 +62,24 @@ public class Event {
                 }
             }
         });
+    }
+
+    public Event(ParseObject event) {
+        if (event.getClassName() == "Event") {
+            mHostId = event.getString("hostId");
+            mEventId = event.getString("eventId");
+            mEventName = event.getString("eventName");
+            mPlaceName = event.getString("placeName");
+
+            ParseGeoPoint point = event.getParseGeoPoint("geoPoint");
+            mLatLng = new LatLng(point.getLatitude(), point.getLongitude());
+
+            hour = event.getInt("hour");
+            minute = event.getInt("minute");
+            year = event.getInt("year");
+            month = event.getInt("month");
+            day = event.getInt("day");
+        }
     }
 
     /**
