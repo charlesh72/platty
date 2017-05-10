@@ -6,6 +6,7 @@ import android.util.Log;
 import com.facebook.FacebookSdk;
 import com.parse.Parse;
 import com.parse.ParseFacebookUtils;
+import com.parse.ParseInstallation;
 import com.parse.ParseUser;
 import com.parse.interceptors.ParseLogInterceptor;
 
@@ -25,7 +26,7 @@ public class App extends Application {
                 .applicationId("myAppId")
                 .clientKey("myMasterKey")
                 .addNetworkInterceptor(new ParseLogInterceptor())
-                .server("https://hidden-stream-90917.herokuapp.com/parse/")
+                .server("https://guarded-brushlands-88435.herokuapp.com/parse/")
                 .build());
 
         ParseFacebookUtils.initialize(this);
@@ -33,5 +34,7 @@ public class App extends Application {
         ParseUser.enableAutomaticUser();
         ParseUser.getCurrentUser().increment("RunCount");
         ParseUser.getCurrentUser().saveInBackground();
+
+        ParseInstallation.getCurrentInstallation().saveInBackground();
     }
 }

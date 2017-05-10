@@ -49,21 +49,6 @@ public class Event {
         mLatLng = new LatLng(-33.8523341, 151.2106085);
     }
 
-    public Event(String eventId) {
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Event");
-        query.whereEqualTo("eventId", eventId);
-        query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> objects, ParseException e) {
-                if (e == null) {
-                    Log.d("event", "Retrieved " + objects.size() + " events");
-                } else {
-                    Log.d("event", "Error: " + e.getMessage());
-                }
-            }
-        });
-    }
-
     public Event(ParseObject event) {
         if (event.getClassName() == "Event") {
             mHostId = event.getString("hostId");

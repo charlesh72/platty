@@ -52,6 +52,13 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Create Event" />
+
+        <Button
+            android:id="@+id/mainBMyEvents"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="My Events" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
