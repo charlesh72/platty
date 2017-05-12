@@ -28,10 +28,18 @@ public class MyEventsActivity extends Activity {
             public void done(List<ParseObject> objects, ParseException e) {
                 if (e == null) {
                     Log.d("event", "Retrieved " + objects.size() + " events");
+                    displayEvents(objects);
                 } else {
                     Log.d("event", "Error: " + e.getMessage());
                 }
             }
         });
+    }
+
+    private void displayEvents(List<ParseObject> objects) {
+        for (ParseObject obj :
+                objects) {
+            Event event = new Event(obj);
+        }
     }
 }

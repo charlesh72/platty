@@ -64,6 +64,8 @@ public class Event {
             year = event.getInt("year");
             month = event.getInt("month");
             day = event.getInt("day");
+        } else {
+            throw new IllegalArgumentException("ParseObject not of Event class");
         }
     }
 
