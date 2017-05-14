@@ -3,6 +3,7 @@ package com.beakon.platty;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ListView;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -37,9 +38,8 @@ public class MyEventsActivity extends Activity {
     }
 
     private void displayEvents(List<ParseObject> objects) {
-        for (ParseObject obj :
-                objects) {
-            Event event = new Event(obj);
-        }
+        EventAdapter adapter = new EventAdapter(this, objects);
+        ListView listView = (ListView) findViewById(R.id.myEventsListView);
+        listView.setAdapter(adapter);
     }
 }
