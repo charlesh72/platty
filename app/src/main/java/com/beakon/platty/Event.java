@@ -12,6 +12,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,6 +24,8 @@ public class Event {
     private int hour, minute, year, month, day;
     private LatLng mLatLng;
     private String mEventName, mPlaceName, mHostId, mEventId;
+    // TODO: 5/24/2017 Set up invites 
+    private ArrayList<String> mInviteList;
 
     private boolean mPublic;
 
