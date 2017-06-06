@@ -34,6 +34,8 @@ public class EventAdapter extends ArrayAdapter<ParseObject> {
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_event, parent, false);
         }
+
+        // TODO: 6/6/2017 Set up onClickListener for items
         // Find the view for data population
         TextView eventName = (TextView) convertView.findViewById(R.id.eventTVname);
         TextView eventDate = (TextView) convertView.findViewById(R.id.eventTVDate);
