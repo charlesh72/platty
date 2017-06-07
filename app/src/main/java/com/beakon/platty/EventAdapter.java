@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.ParseObject;
 
@@ -35,7 +36,21 @@ public class EventAdapter extends ArrayAdapter<ParseObject> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_event, parent, false);
         }
 
-        // TODO: 6/6/2017 Set up onClickListener for items
+        // Lookup view for data population
+        View itemLayout = convertView.findViewById(R.id.eventItem);
+        // Cache row position inside the button using 'setTag'
+        itemLayout.setTag(position);
+        // Attach the click event handler
+        itemLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = (Integer) v.getTag();
+                // Access the row position here to get the correct data item
+                Event event = new Event(getItem(position));
+                Toast.makeText(getContext(), "Event Name:" + event.getEventName(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
         // Find the view for data population
         TextView eventName = (TextView) convertView.findViewById(R.id.eventTVname);
         TextView eventDate = (TextView) convertView.findViewById(R.id.eventTVDate);
