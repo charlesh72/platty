@@ -13,8 +13,6 @@
          location permissions for the 'MyLocation' functionality. 
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -25,10 +23,11 @@
     IMPORTANT: Change "com.parse.starter.permission.C2D_MESSAGE" in the lines below
     to match your app's package name + ".permission.C2D_MESSAGE".
     -->
-    <permission android:protectionLevel="signature"
-        android:name="com.beakon.platty.permission.C2D_MESSAGE" />
-    <uses-permission android:name="com.beakon.platty.permission.C2D_MESSAGE" />
+    <permission
+        android:name="com.beakon.platty.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
 
+    <uses-permission android:name="com.beakon.platty.permission.C2D_MESSAGE" />
 
     <application
         android:name=".App"
@@ -86,24 +85,22 @@
         <activity
             android:name=".ContactsActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".MyEventsActivity"></activity>
+        <activity android:name=".MyEventsActivity" />
 
-        <service
-            android:name=".MyFirebaseMessagingService">
+        <service android:name=".MyFirebaseMessagingService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
-        <service
-            android:name=".MyFirebaseInstanceIDService">
+        <service android:name=".MyFirebaseInstanceIDService">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-
         <service android:name="com.parse.PushService" />
-        <receiver android:name="com.parse.ParsePushBroadcastReceiver"
+
+        <receiver
+            android:name="com.parse.ParsePushBroadcastReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.parse.push.intent.RECEIVE" />
@@ -111,25 +108,24 @@
                 <action android:name="com.parse.push.intent.OPEN" />
             </intent-filter>
         </receiver>
-        <receiver android:name="com.parse.GcmBroadcastReceiver"
+        <receiver
+            android:name="com.parse.GcmBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
 
-                <!--
-                IMPORTANT: Change "com.parse.starter" to match your app's package name.
-                -->
+                <!--                 IMPORTANT: Change "com.parse.starter" to match your app's package name. -->
                 <category android:name="com.beakon.platty" />
             </intent-filter>
         </receiver>
 
-        <!--
-        IMPORTANT: Change "YOUR_SENDER_ID" to your GCM Sender Id.
-        -->
-        <meta-data android:name="com.parse.push.gcm_sender_id"
-            android:value="id:677993427609" />;
-
+        <!--         IMPORTANT: Change "YOUR_SENDER_ID" to your GCM Sender Id. -->
+        <meta-data
+            android:name="com.parse.push.gcm_sender_id"
+            android:value="id:677993427609" />
+        ;
+        <activity android:name=".FindEvents"></activity>
     </application>
 
 </manifest>
