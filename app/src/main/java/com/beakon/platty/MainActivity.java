@@ -75,6 +75,15 @@ public class MainActivity extends Activity {
             }
         });
 
+        Button findEventB = (Button) findViewById(R.id.mainBFindEvents);
+        findEventB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, FindEventsActivity.class);
+                startActivity(intent);
+            }
+        });
+
         final LoginButton fbButton = (LoginButton) findViewById(R.id.facebook_login);
         fbButton.setOnClickListener(new View.OnClickListener() {
             @Override

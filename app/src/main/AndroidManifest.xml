@@ -125,7 +125,7 @@
             android:name="com.parse.push.gcm_sender_id"
             android:value="id:677993427609" />
         ;
-        <activity android:name=".FindEvents"></activity>
+        <activity android:name=".FindEventsActivity"></activity>
     </application>
 
 </manifest>
